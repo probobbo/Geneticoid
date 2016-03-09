@@ -20,6 +20,7 @@ public class Spawner : MonoBehaviour {
             else
                 temp.SendMessage("SetMoveEngine", new EnemyCircleMovement(temp.GetComponent<EnemyBehaviourTemp>().speed));
         }
+
         swarm.SendMessage("create_array");
 	}
 
