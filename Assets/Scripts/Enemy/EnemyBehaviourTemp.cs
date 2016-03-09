@@ -8,14 +8,12 @@ public class EnemyBehaviourTemp : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	}
-	
+    }
+
 	// Update is called once per frame
 	void Update () {
         //Movements of the enemy
-        ArrayList movement = moveEngine.Move(transform.position,transform.rotation);
-        transform.position = (Vector3)movement[0];
-        transform.rotation = (Quaternion)movement[1];
+        moveEngine.Move(transform);
     }
 
     void SetMoveEngine(InterfaceEnemyMovement moveEngine)

@@ -13,17 +13,13 @@ public class EnemyFollowMovement : InterfaceEnemyMovement {
         player = GameObject.FindGameObjectWithTag("Player").transform;  
     }
 
-    public ArrayList Move(Vector3 position, Quaternion rotation)
+    public void Move(Transform transform)
     {
-        Vector3 dir = player.position - position;
-        position += dir.normalized * speed * Time.deltaTime;
+        Vector3 dir = player.position - transform.position;
+        transform.position += dir.normalized * speed * Time.deltaTime;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        rotation = Quaternion.AngleAxis(angle-90, Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(angle-90, Vector3.forward);
 
-        ArrayList result = new ArrayList();
-        result.Add(position);
-        result.Add(rotation);
-        return result;
     }
 }
