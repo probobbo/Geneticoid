@@ -6,12 +6,17 @@ public class Spawner : MonoBehaviour {
 
     public GameObject enemy;
     public GameObject swarm;
+    public int numberOfEnemies = 15; 
 
 	// Use this for initialization
 	void Start () {
-	    for(int i = 0;  i<15; i++)
+	    for(int i = 0;  i<numberOfEnemies; i++)
         {
-            Instantiate(enemy , new Vector3(Random.Range(-40,40), Random.Range(-40, 40),0), Quaternion.identity);
+            GameObject temp = (GameObject)Instantiate(enemy , new Vector3(Random.Range(-40,40), Random.Range(-40, 40),0), Quaternion.identity);
+            if (i < 8)
+                temp.SendMessage("SetMoveEngine", new EnemyRandomMovement(temp.GetComponent<EnemyBehaviourTemp>().speed));
+            else
+                temp.SendMessage("SetMoveEngine", new EnemyFollowMovement(temp.GetComponent<EnemyBehaviourTemp>().speed));
         }
         swarm.SendMessage("create_array");
 	}
