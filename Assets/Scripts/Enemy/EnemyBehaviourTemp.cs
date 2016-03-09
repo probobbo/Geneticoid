@@ -8,8 +8,8 @@ public class EnemyBehaviourTemp : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        moveEngine = new EnemyFollowMovement(speed); 
-	}
+        moveEngine = new EnemyCircleMovement(speed); 
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,8 +22,6 @@ public class EnemyBehaviourTemp : MonoBehaviour {
             moveEngine = new EnemyRandomMovement(speed);
         }
         //Movements of the enemy
-        ArrayList movement = moveEngine.Move(transform.position,transform.rotation);
-        transform.position = (Vector3)movement[0];
-        transform.rotation = (Quaternion)movement[1];
+        moveEngine.Move(transform);
     }
 }
