@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EnemyLaser : MonoBehaviour
 {
+    GameObject spawner;
+    int index;
     public float timeToLive;
     float timer;
     public float speed = 15;
@@ -10,7 +12,7 @@ public class EnemyLaser : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        spawner = GameObject.FindGameObjectWithTag("Spawner");
     }
 
     // Update is called once per frame
@@ -29,8 +31,14 @@ public class EnemyLaser : MonoBehaviour
         if (coll.gameObject.tag.Equals("Player"))
         {
             coll.gameObject.SendMessageUpwards("PlayerDamage", dmgs);
+            spawner.SendMessage("PlayerGotHit", index);
             Destroy(transform.gameObject);
         }
        
+    }
+    
+    void SetIndex(int i)
+    {
+        this.index = i;
     }
 }

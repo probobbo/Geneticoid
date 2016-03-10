@@ -28,7 +28,9 @@ public class EnemyBaseShoot : MonoBehaviour {
     void Shoot()
     {
         timer = 0f;
-        Instantiate(laserBeam, laserSpawnPoint.transform.position, laserSpawnPoint.transform.rotation);
+        GameObject laser = (GameObject)Instantiate(laserBeam, laserSpawnPoint.transform.position, laserSpawnPoint.transform.rotation);
+        EnemyHurt enemy = transform.gameObject.GetComponent<EnemyHurt>();
+        laser.SendMessage("SetIndex",enemy.index);
     }
 
     void SetThreshold(float threshold)
