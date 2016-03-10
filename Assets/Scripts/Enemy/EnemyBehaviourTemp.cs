@@ -4,10 +4,11 @@ using System.Collections;
 public class EnemyBehaviourTemp : MonoBehaviour {
 
     public float speed = 4;
-    float sightrange = 12;
-    float firerange = 8;
+    public float sightrange = 12;
+    public float firerange = 8;
+    public string movement; 
     InterfaceEnemyMovement baseEngine;
-    InterfaceEnemyMovement moveEngine;
+    public InterfaceEnemyMovement moveEngine;
     Transform player;
 
     // Use this for initialization
@@ -31,7 +32,8 @@ public class EnemyBehaviourTemp : MonoBehaviour {
 
     void SetMoveEngine(InterfaceEnemyMovement moveEngine)
     {
-        this.moveEngine = moveEngine; 
+        this.moveEngine = moveEngine;
+        movement = (moveEngine.ToString()).Substring(5);
     }
 
     void SetSpeed(float speed)

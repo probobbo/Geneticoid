@@ -10,6 +10,8 @@ public class Spawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        FileWriter fw = new FileWriter();
+        
 	    for(int i = 0;  i<numberOfEnemies; i++)
         {
             GameObject temp = (GameObject)Instantiate(enemy , new Vector3(Random.Range(-40,40), Random.Range(-40, 40),0), Quaternion.identity);
@@ -34,9 +36,9 @@ public class Spawner : MonoBehaviour {
                 temp.SendMessage("SetSpeed", 2.5);
                 temp.SendMessage("SetThreshold", 1);
                 temp.SendMessage("SetMoveEngine", new EnemyCircleMovement(temp.GetComponent<EnemyBehaviourTemp>().speed));
-            }  
+            }
+            fw.AppendString(JsonUtility.ToJson(temp.GetComponent<EnemyBehaviourTemp>()));
         }
-
         swarm.SendMessage("create_array");
 	}
 
