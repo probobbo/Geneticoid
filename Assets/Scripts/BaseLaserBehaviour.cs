@@ -24,7 +24,7 @@ public class BaseLaserBehaviour : MonoBehaviour
         transform.position += rot * velocity;
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         coll.gameObject.SendMessageUpwards("Damage",dmgs);
         Destroy(transform.gameObject);

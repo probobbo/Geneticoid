@@ -26,7 +26,7 @@ public class EnemyLaser : MonoBehaviour
         transform.position += rot * velocity;
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag.Equals("Player"))
         {

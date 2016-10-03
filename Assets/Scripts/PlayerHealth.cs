@@ -25,7 +25,8 @@ public class PlayerHealth : MonoBehaviour {
         hptext.GetComponent<Text>().text = health.ToString()+"x";
         if (health <= 0)
         {
-            SceneManager.LoadScene("mainscene");
+            GameObject.Find("GameManager").GetComponent<gamemanager>().won = false;
+            GameObject.Find("GameManager").GetComponent<gamemanager>().LoadScene(2);
         }
     }
 }

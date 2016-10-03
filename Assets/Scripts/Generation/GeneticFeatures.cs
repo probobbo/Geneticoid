@@ -19,4 +19,8 @@ public class GeneticFeatures {
         return JsonUtility.FromJson<GeneticFeatures>(jsonString);
     }
 
+    public float Fitness()
+    {
+        return (lifetime * 0.1f) * (hits * 5f);
+    }
 }

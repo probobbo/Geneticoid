@@ -2,16 +2,18 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
+using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
 {
-
+    string[] movements = { "EnemyCircleMovement", "EnemyFollowMovement", "EnemyRandomMovement" };
     public GameObject enemy;
     public GameObject swarm;
     public int numberOfEnemies = 15;
     public int remaining;
     public GeneticFeatures[] enemyData;
-    FileWriter fw; 
+    FileWriter fw,fw2; 
 
     // Use this for initialization
     void Start()
@@ -21,11 +23,11 @@ public class Spawner : MonoBehaviour
         //Debug.Log(g.movement);
         // Debug.Log(g.index);
 
-        new FileReader().ReadJSon(); 
-
+        GeneticFeatures[] NewGen =  GameObject.Find("GameManager").GetComponent<gamemanager>().LoadLastGen();
         // end of debug section
-
-        fw = new FileWriter();
+        NewGen = Genetication(NewGen);
+        fw = new FileWriter("Generation");
+        fw2 = new FileWriter("LastGen");
         enemyData = new GeneticFeatures[numberOfEnemies];
         remaining = numberOfEnemies;
 
@@ -41,7 +43,7 @@ public class Spawner : MonoBehaviour
 
             enemyData[i] = new GeneticFeatures(); 
             //ci dovrebbe essere una lettura da file per spawnare i nemici 
-            GameObject temp = (GameObject)Instantiate(enemy, new Vector3(Random.Range(-40, 40), Random.Range(-40, 40), 0), Quaternion.identity);
+            GameObject temp = (GameObject)Instantiate(enemy, new Vector3(UnityEngine.Random.Range(-40, 40), UnityEngine.Random.Range(-40, 40), 0), Quaternion.identity);
 
             temp.SendMessage("SetIndex", i);
             enemyData[i].index = i;
@@ -85,13 +87,91 @@ public class Spawner : MonoBehaviour
         swarm.SendMessage("create_array");
     }
 
+    GeneticFeatures[] Genetication(GeneticFeatures[] last)
+    {
+        GeneticFeatures[] temp = (GeneticFeatures[])last.Clone();
+        temp = Selection(temp);
+        temp = Recombination(temp);
+        temp = Mutation(temp);
+        return temp;
+    }
+
+    GeneticFeatures[] Selection (GeneticFeatures[] last)
+    {
+        Array.Sort(last, delegate (GeneticFeatures user1, GeneticFeatures user2) {return user1.Fitness().CompareTo(user2.Fitness());});
+        Array.Reverse(last);
+        GeneticFeatures[] temp = new GeneticFeatures[5];
+        Array.Copy(last, temp, 5);
+        return temp;
+    }
+
+    GeneticFeatures[] Recombination (GeneticFeatures[] last)
+    {
+        int i = 0;
+        List<GeneticFeatures> temp = new List<GeneticFeatures>();
+        foreach(GeneticFeatures g1 in last)
+        {
+            foreach(GeneticFeatures g2 in last)
+            {
+                if(g1.index != g2.index)
+                {
+                    temp.Add(crossing(g1, g2,i));
+                    i++;
+                }
+            }
+        }
+        return temp.ToArray();
+    }
+
+    GeneticFeatures[] Mutation(GeneticFeatures[] last)
+    {
+        foreach(GeneticFeatures g in last)
+        {
+            if (UnityEngine.Random.Range(0f, 1f) <= 0.1f)
+            {
+                int val = UnityEngine.Random.Range(0, 4);
+                switch (val)
+                {
+                    case 0:
+                        g.speed = UnityEngine.Random.Range(2, 10);
+                        break;
+                    case 1: 
+                        g.movement = movements[UnityEngine.Random.Range(0, 2)];
+                        break;
+                    case 2:
+                        g.sightrange = UnityEngine.Random.Range(5, 20);
+                        break;
+                    case 3:
+                        g.firerange = UnityEngine.Random.Range(5, 16);
+                        break;
+                    case 4:
+                        g.threshold = UnityEngine.Random.Range(0.2f, 1.5f);
+                        break;
+                }
+            }
+        }
+        return last;
+    }
+
+    GeneticFeatures crossing (GeneticFeatures g1, GeneticFeatures g2,int i)
+    {
+        GeneticFeatures ret = new GeneticFeatures();
+        ret.index = i;
+        ret.speed = g1.speed;
+        ret.movement = g1.movement;
+        ret.sightrange = g2.sightrange;
+        ret.firerange = g2.firerange;
+        ret.threshold = g2.threshold;
+        return ret;
+    }
+
     void Update()
     {
     }
 
     void PlayerGotHit(int i)
     {
-        enemyData[i].hits += 1; 
+        enemyData[i].hits += 1;
     }
     void StoreLifeTime(object[] obj)
     {
@@ -101,21 +181,30 @@ public class Spawner : MonoBehaviour
         if (remaining == 0)
         {
             WriteToFile();
+            GameObject.Find("GameManager").GetComponent<gamemanager>().won = true;
+            GameObject.Find("GameManager").GetComponent<gamemanager>().LoadScene(2);
         }
     }
 
 
     void WriteToFile()
     {
-        fw.AppendString("\"Gen\":{");
+        fw.WriteString("\"Gen\":{");
         for (int i = 0; i < enemyData.Length; i++)
         {
             if (i == 0)
-                fw.AppendString("\"" + i + "\":" + JsonUtility.ToJson(enemyData[i]));
-            else
-                fw.AppendString(",\"" + i + "\":" + JsonUtility.ToJson(enemyData[i]));
+            {
+                fw.WriteString("\"" + i + "\":" + JsonUtility.ToJson(enemyData[i]));
+                fw2.WriteString(JsonUtility.ToJson(enemyData[i]),false);
+            }
+            else {
+                fw.WriteString(",\"" + i + "\":" + JsonUtility.ToJson(enemyData[i]));
+                fw2.WriteString(JsonUtility.ToJson(enemyData[i]));
+            }
+            
         }
-        fw.AppendString("}");
+        fw.WriteString("}");
+       
     }
 
     void UpdateText()
