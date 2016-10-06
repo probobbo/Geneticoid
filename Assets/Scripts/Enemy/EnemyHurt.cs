@@ -10,6 +10,11 @@ public class EnemyHurt : MonoBehaviour
     GameObject spawner;
     public int life;
     public float lifetime = 0;
+
+    public void setlife(int l)
+    {
+        life = l;
+    }
     // Use this for initialization
     void Start()
     {

@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 public class gamemanager : MonoBehaviour {
 
     public bool won = false;
+    public bool first = true;
+    public int number;
+    public GeneticFeatures[] lastgen;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +20,11 @@ public class gamemanager : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void SetFirst(bool b)
+    {
+        first = b;
+    }
 
     public void LoadScene(int i)
     {
