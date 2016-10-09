@@ -55,9 +55,19 @@ public class Spawner : MonoBehaviour
             int life = 0;
             InterfaceEnemyMovement moveEngine = null;
 
-            enemyData[i] = new GeneticFeatures(); 
+            enemyData[i] = new GeneticFeatures();
+            float x = UnityEngine.Random.Range(-38, 38);
+            while(x>-10 && x < 10)
+            {
+                x = UnityEngine.Random.Range(-38, 38);
+            }
+            float y = UnityEngine.Random.Range(-38, 38);
+            while (y > -10 && y < 10)
+            {
+                y = UnityEngine.Random.Range(-38, 38);
+            }
             //ci dovrebbe essere una lettura da file per spawnare i nemici 
-            GameObject temp = (GameObject)Instantiate(enemy, new Vector3(UnityEngine.Random.Range(-38, 38), UnityEngine.Random.Range(-38, 38), 0), Quaternion.identity);
+            GameObject temp = (GameObject)Instantiate(enemy, new Vector3(x, y, 0), Quaternion.identity);
 
             temp.SendMessage("SetIndex", NewGen[i].index);
             enemyData[i].index = NewGen[i].index;

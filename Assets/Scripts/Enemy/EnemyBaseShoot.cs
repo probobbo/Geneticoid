@@ -19,8 +19,17 @@ public class EnemyBaseShoot : MonoBehaviour {
         timer += Time.deltaTime; 
         if(timer >= threshold)
         {
-            if(playerinsight)
-                Shoot();
+            if (playerinsight)
+            {
+                RaycastHit2D[] ray = Physics2D.RaycastAll(laserSpawnPoint.transform.position, laserSpawnPoint.transform.rotation * Vector2.up);
+                if (ray[0].collider.tag == "Player")
+                {
+                    Shoot();
+                    print("SPARO");
+                }
+                else
+                    print("NON SPARO");
+            }
         }
 	}
 

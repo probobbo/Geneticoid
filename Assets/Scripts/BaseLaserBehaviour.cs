@@ -26,7 +26,10 @@ public class BaseLaserBehaviour : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        coll.gameObject.SendMessageUpwards("Damage",dmgs);
-        Destroy(transform.gameObject);
+        if (coll.gameObject.tag == "Enemy")
+        {
+            coll.gameObject.SendMessageUpwards("Damage", dmgs);
+            Destroy(transform.gameObject);
+        }
     }
 }
