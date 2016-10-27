@@ -42,6 +42,10 @@ public class gamemanager : MonoBehaviour {
         score = 0;
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
 
 
 }
