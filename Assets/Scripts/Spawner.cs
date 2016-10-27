@@ -9,7 +9,6 @@ public class Spawner : MonoBehaviour
 {
     string[] movements = { "EnemyCircleMovement", "EnemyFollowMovement", "EnemyRandomMovement" };
     public GameObject enemy;
-    public GameObject swarm;
     public int numberOfEnemies = 15;
     public int remaining;
     public GeneticFeatures[] enemyData;

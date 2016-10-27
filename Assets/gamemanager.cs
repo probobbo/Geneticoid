@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class gamemanager : MonoBehaviour {
 
+    public static float score = 0;
     public bool won = false;
     public bool first = true;
     public int number;
@@ -35,5 +36,10 @@ public class gamemanager : MonoBehaviour {
     {
         
         return new FileReader().ReadJSon();
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
     }
 }

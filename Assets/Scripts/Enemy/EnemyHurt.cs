@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class EnemyHurt : MonoBehaviour
 {
     GameObject enemytext;
     public int index;
     public GameObject explosion;
-    public GameObject swarm;
     GameObject spawner;
     public int life;
     public float lifetime = 0;
@@ -39,9 +39,8 @@ public class EnemyHurt : MonoBehaviour
     void Destruction()
     {
         //show explosion
+        gamemanager.score += 100;
         spawner = GameObject.FindGameObjectWithTag("Spawner");
-        swarm = GameObject.FindWithTag("Swarmer");
-        swarm.SendMessage("remove_enemy", transform.gameObject);
         object[] param = new object[2] { index, lifetime };
         spawner.SendMessage("StoreLifeTime", param);
         Instantiate(explosion, transform.position, transform.rotation); 
