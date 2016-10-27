@@ -24,3 +24,11 @@ ExportedObj/
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+
+# Build output Windows
+*.exe
+*_Data/
+/player_win_x86.pdb
+/player_win_x86_s.pdb
+/player_win_development_x86.pdb
+/player_win_development_x86_s.pdb
