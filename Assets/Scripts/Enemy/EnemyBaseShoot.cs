@@ -21,14 +21,11 @@ public class EnemyBaseShoot : MonoBehaviour {
         {
             if (playerinsight)
             {
-                RaycastHit2D[] ray = Physics2D.RaycastAll(laserSpawnPoint.transform.position, laserSpawnPoint.transform.rotation * Vector2.up);
-                if (ray[0].collider.tag == "Player")
+                RaycastHit2D ray = Physics2D.Raycast(laserSpawnPoint.transform.position, laserSpawnPoint.transform.rotation * Vector2.up);
+                if (ray.collider.tag == "Player")
                 {
                     Shoot();
-                    print("SPARO");
                 }
-                else
-                    print("NON SPARO");
             }
         }
 	}

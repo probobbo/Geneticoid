@@ -52,6 +52,7 @@ public class Spawner : MonoBehaviour
             float sightRange = 0;
             float fireRange = 0;
             float threshold = 0;
+            float advicerange = 0;
             int life = 0;
             InterfaceEnemyMovement moveEngine = null;
 
@@ -81,6 +82,7 @@ public class Spawner : MonoBehaviour
             enemyData[i].firerange = fireRange;
             speed = NewGen[i].speed;
             threshold = NewGen[i].threshold;
+            advicerange = NewGen[i].advicerange;
             life = NewGen[i].life;
             switch (NewGen[i].movement)
             {
@@ -94,14 +96,21 @@ public class Spawner : MonoBehaviour
                     moveEngine = new EnemyRandomMovement(speed);
                     break;
             }
+            temp.SendMessage("SetAdviceRange",advicerange);
+            enemyData[i].advicerange = advicerange;
+
             temp.SendMessage("setlife", life);
             enemyData[i].life = life;
+
             temp.SendMessage("SetSpeed", speed);
             enemyData[i].speed = speed; 
+
             temp.SendMessage("SetThreshold", threshold);
             enemyData[i].threshold = threshold; 
+
             temp.SendMessage("SetMoveEngine", moveEngine);
             enemyData[i].movement = moveEngine.ToString();
+
             GameObject.Find("GameManager").GetComponent<gamemanager>().lastgen = NewGen;
         }
         //swarm.SendMessage("create_array");
@@ -127,6 +136,7 @@ public class Spawner : MonoBehaviour
         g.firerange = UnityEngine.Random.Range(5, 16);
         g.threshold = UnityEngine.Random.Range(0.2f, 1.5f);
         g.life = UnityEngine.Random.Range(1, 4);
+        g.advicerange = UnityEngine.Random.Range(5f,15f);
         return g;
     }
 
@@ -172,7 +182,7 @@ public class Spawner : MonoBehaviour
         {
             if (UnityEngine.Random.Range(0f, 1f) <= 0.1f)
             {
-                int val = UnityEngine.Random.Range(0, 5);
+                int val = UnityEngine.Random.Range(0, 7);
                 switch (val)
                 {
                     case 0:
@@ -193,6 +203,9 @@ public class Spawner : MonoBehaviour
                     case 5:
                         g.life = UnityEngine.Random.Range(1,4);
                         break;
+                    case 6:
+                        g.advicerange = UnityEngine.Random.Range(5f,15f);
+                        break;
                 }
             }
         }
@@ -206,6 +219,7 @@ public class Spawner : MonoBehaviour
         ret.speed = g1.speed;
         ret.movement = g1.movement;
         ret.life = g1.life;
+        ret.advicerange = g1.advicerange;
         ret.sightrange = g2.sightrange;
         ret.firerange = g2.firerange;
         ret.threshold = g2.threshold;

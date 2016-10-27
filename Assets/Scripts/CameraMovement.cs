@@ -23,10 +23,12 @@ public class CameraMovement : MonoBehaviour
         {
    
             Vector3 pos = player.transform.position;
-            Vector3 velocity = new Vector3(pos.x - transform.position.x, pos.y - transform.position.y, 0);
-            transform.position += velocity * Time.deltaTime * speed;
+            //Vector3 velocity = new Vector3(pos.x - transform.position.x, pos.y - transform.position.y, 0);
+            //transform.position = transform.position + velocity.normalized * Time.deltaTime * speed;
+            
+            transform.position = new Vector3(pos.x,pos.y,transform.position.z);
+
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, -40.0f + horizontal, 40.0f - horizontal), Mathf.Clamp(transform.position.y, -40.0f + vertical, 40.0f - vertical), transform.position.z);
         }
-
     }
 }

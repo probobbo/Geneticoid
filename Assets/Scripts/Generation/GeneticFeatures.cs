@@ -13,6 +13,7 @@ public class GeneticFeatures {
     public float sightrange;
     public float firerange;
     public float threshold;
+    public float advicerange;
     public int life;
 
     public static GeneticFeatures CreateFromJSON(string jsonString)
