@@ -1,5 +1,28 @@
+<<<<<<< HEAD
 {"index":0,"lifetime":7.351407051086426,"hits":0,"speed":4.0,"movement":"EnemyFollowMovement","sightrange":11.0,"firerange":15.0,"threshold":1.1715567111968995,"advicerange":10.322744369506836,"life":3}
 {"index":1,"lifetime":11.625351905822754,"hits":0,"speed":4.0,"movement":"EnemyCircleMovement","sightrange":17.0,"firerange":15.0,"threshold":0.6170485019683838,"advicerange":5.219233512878418,"life":3}
 {"index":2,"lifetime":17.23858070373535,"hits":0,"speed":4.0,"movement":"EnemyCircleMovement","sightrange":16.0,"firerange":13.0,"threshold":0.45797890424728396,"advicerange":9.958361625671387,"life":2}
 {"index":3,"lifetime":8.891890525817871,"hits":0,"speed":5.0,"movement":"EnemyFollowMovement","sightrange":5.0,"firerange":6.0,"threshold":0.9251529574394226,"advicerange":7.569978713989258,"life":1}
 {"index":4,"lifetime":18.298572540283204,"hits":0,"speed":5.0,"movement":"EnemyFollowMovement","sightrange":8.0,"firerange":6.0,"threshold":1.484269142150879,"advicerange":9.371365547180176,"life":1}
+=======
+{"index":0,"lifetime":32.79756546020508,"hits":0,"speed":3.0,"movement":"EnemyRandomMovement","sightrange":15.0,"firerange":13.0,"threshold":1.225801706314087,"advicerange":13.40509033203125,"life":1}
+{"index":1,"lifetime":38.1672248840332,"hits":0,"speed":2.0,"movement":"EnemyFollowMovement","sightrange":11.0,"firerange":13.0,"threshold":1.0236436128616334,"advicerange":14.218219757080079,"life":1}
+{"index":2,"lifetime":39.08112716674805,"hits":1,"speed":8.0,"movement":"EnemyCircleMovement","sightrange":19.0,"firerange":12.0,"threshold":1.2282428741455079,"advicerange":8.557034492492676,"life":2}
+{"index":3,"lifetime":47.86862564086914,"hits":0,"speed":5.0,"movement":"EnemyCircleMovement","sightrange":13.0,"firerange":9.0,"threshold":1.2896552085876465,"advicerange":10.376363754272461,"life":3}
+{"index":4,"lifetime":12.5888671875,"hits":0,"speed":2.0,"movement":"EnemyRandomMovement","sightrange":18.0,"firerange":8.0,"threshold":0.522042989730835,"advicerange":12.335935592651368,"life":2}
+{"index":5,"lifetime":55.133975982666019,"hits":0,"speed":5.0,"movement":"EnemyRandomMovement","sightrange":7.0,"firerange":9.0,"threshold":0.8126153349876404,"advicerange":7.109253406524658,"life":2}
+{"index":6,"lifetime":13.620426177978516,"hits":0,"speed":9.0,"movement":"EnemyCircleMovement","sightrange":16.0,"firerange":5.0,"threshold":0.9286186695098877,"advicerange":6.807966232299805,"life":1}
+{"index":7,"lifetime":40.82303237915039,"hits":0,"speed":2.0,"movement":"EnemyRandomMovement","sightrange":9.0,"firerange":15.0,"threshold":0.3631093502044678,"advicerange":9.437297821044922,"life":1}
+{"index":8,"lifetime":16.844850540161134,"hits":0,"speed":2.0,"movement":"EnemyFollowMovement","sightrange":9.0,"firerange":6.0,"threshold":1.3482228517532349,"advicerange":9.132083892822266,"life":3}
+{"index":9,"lifetime":6.256255149841309,"hits":0,"speed":5.0,"movement":"EnemyFollowMovement","sightrange":9.0,"firerange":12.0,"threshold":0.5699068307876587,"advicerange":11.483329772949219,"life":3}
+{"index":10,"lifetime":3.9824459552764894,"hits":0,"speed":9.0,"movement":"EnemyFollowMovement","sightrange":16.0,"firerange":6.0,"threshold":1.3883826732635499,"advicerange":11.273131370544434,"life":3}
+{"index":11,"lifetime":38.998287200927737,"hits":0,"speed":3.0,"movement":"EnemyRandomMovement","sightrange":16.0,"firerange":13.0,"threshold":0.48338380455970766,"advicerange":9.770066261291504,"life":3}
+{"index":12,"lifetime":44.743309020996097,"hits":0,"speed":2.0,"movement":"EnemyFollowMovement","sightrange":12.0,"firerange":11.0,"threshold":1.3269739151000977,"advicerange":12.655638694763184,"life":2}
+{"index":13,"lifetime":21.036191940307618,"hits":1,"speed":5.0,"movement":"EnemyRandomMovement","sightrange":13.0,"firerange":11.0,"threshold":0.942739725112915,"advicerange":14.703649520874024,"life":2}
+{"index":14,"lifetime":61.09629821777344,"hits":0,"speed":5.0,"movement":"EnemyFollowMovement","sightrange":11.0,"firerange":10.0,"threshold":1.289009690284729,"advicerange":13.477214813232422,"life":3}
+{"index":15,"lifetime":46.522422790527347,"hits":0,"speed":5.0,"movement":"EnemyFollowMovement","sightrange":8.0,"firerange":10.0,"threshold":0.515717625617981,"advicerange":8.77597713470459,"life":1}
+{"index":16,"lifetime":27.355562210083009,"hits":1,"speed":8.0,"movement":"EnemyRandomMovement","sightrange":8.0,"firerange":12.0,"threshold":0.5141987800598145,"advicerange":6.394566059112549,"life":3}
+{"index":17,"lifetime":15.20401668548584,"hits":0,"speed":6.0,"movement":"EnemyFollowMovement","sightrange":15.0,"firerange":11.0,"threshold":0.541659414768219,"advicerange":13.611034393310547,"life":1}
+{"index":18,"lifetime":6.836484432220459,"hits":0,"speed":7.0,"movement":"EnemyFollowMovement","sightrange":18.0,"firerange":10.0,"threshold":1.2353042364120484,"advicerange":5.083400249481201,"life":3}
+{"index":19,"lifetime":29.482223510742189,"hits":0,"speed":2.0,"movement":"EnemyFollowMovement","sightrange":12.0,"firerange":10.0,"threshold":1.2838833332061768,"advicerange":10.30300235748291,"life":1}
+>>>>>>> cfe9a6ce48a244a1039386b21cf06ebbbc40ee60

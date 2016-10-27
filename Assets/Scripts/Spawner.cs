@@ -7,6 +7,11 @@ using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
 {
+    public Sprite[] enemies;
+    Dictionary<string, Sprite> EnSprites = new Dictionary<string, Sprite>();
+    Dictionary<string, int> dict = new Dictionary<string, int>();
+    public string[] MovTypeSprite;
+    public int[] SpeedTypeSprite;
     string[] movements = { "EnemyCircleMovement", "EnemyFollowMovement", "EnemyRandomMovement" };
     public GameObject enemy;
     public int numberOfEnemies = 15;
@@ -18,6 +23,13 @@ public class Spawner : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        foreach(Sprite s in enemies)
+        {
+            EnSprites.Add(s.name, s);
+        }
+        dict.Add(movements[0], 0);
+        dict.Add(movements[1], 1);
+        dict.Add(movements[2], 2);
         // just a debug section 
         //GeneticFeatures g = GeneticFeatures.CreateFromJSON("\"Gen\":{\"0\":{ \"index\":0,\"lifetime\":5.774858474731445,\"hits\":0,\"speed\":2.5,\"movement\":\"EnemyCircleMovement\",\"sightrange\":12.0,\"firerange\":8.0,\"threshold\":1.0},\"1\":{ \"index\":1,\"lifetime\":35.86322784423828,\"hits\":1,\"speed\":2.5,\"movement\":\"EnemyCircleMovement\",\"sightrange\":12.0,\"firerange\":8.0,\"threshold\":1.0},\"2\":{ \"index\":2,\"lifetime\":20.174379348754884,\"hits\":0,\"speed\":2.0,\"movement\":\"EnemyFollowMovement\",\"sightrange\":12.0,\"firerange\":8.0,\"threshold\":0.800000011920929}}");
         //Debug.Log(g.movement);
@@ -101,6 +113,8 @@ public class Spawner : MonoBehaviour
             temp.SendMessage("setlife", life);
             enemyData[i].life = life;
 
+            temp.transform.localScale *= (1 + (0.2f * life));
+
             temp.SendMessage("SetSpeed", speed);
             enemyData[i].speed = speed; 
 
@@ -109,6 +123,8 @@ public class Spawner : MonoBehaviour
 
             temp.SendMessage("SetMoveEngine", moveEngine);
             enemyData[i].movement = moveEngine.ToString();
+
+            temp.GetComponentInChildren<SpriteRenderer>().sprite =  GetSprite(speed, NewGen[i].movement);
 
             GameObject.Find("GameManager").GetComponent<gamemanager>().lastgen = NewGen;
         }
@@ -125,12 +141,21 @@ public class Spawner : MonoBehaviour
         return temp.ToArray();
     }
 
+    Sprite GetSprite(float speed, string mov)
+    {
+        string ret = "enemy";
+        ret +=MovTypeSprite[dict[mov]];
+        ret += SpeedTypeSprite[(int)(speed/2)-1];
+        print(ret);
+        return EnSprites[ret];
+    }
+
     GeneticFeatures RandomGeneticFeature(int index)
     {
         GeneticFeatures g = new GeneticFeatures();
         g.index = index;
         g.speed = UnityEngine.Random.Range(2, 10);
-        g.movement = movements[UnityEngine.Random.Range(0, 2)];
+        g.movement = movements[UnityEngine.Random.Range(0, 3)];
         g.sightrange = UnityEngine.Random.Range(5, 20);
         g.firerange = UnityEngine.Random.Range(5, 16);
         g.threshold = UnityEngine.Random.Range(0.2f, 1.5f);
