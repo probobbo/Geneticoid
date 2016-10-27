@@ -19,7 +19,6 @@ public class gamemanager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
     public void SetFirst(bool b)
@@ -42,4 +41,7 @@ public class gamemanager : MonoBehaviour {
     {
         score = 0;
     }
+
+
+
 }

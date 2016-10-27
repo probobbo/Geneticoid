@@ -18,7 +18,7 @@ public class PlayerShoot : MonoBehaviour {
         timer += Time.deltaTime;
         //if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Joystick1Button0)) && timer >= shootFrequency)
         
-        if(Input.GetMouseButton(0) && timer >= shootFrequency) {
+        if(Input.GetMouseButton(0) && timer >= shootFrequency && !GetComponent<SpaceShipMovement>().pause) {
             Shoot();
         }
 
