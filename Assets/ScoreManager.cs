@@ -12,6 +12,6 @@ public class ScoreManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        text.text = "Score: " + gamemanager.score;
+        text.text = "Score: " + gamemanager.score + " waveNum " + (PlayerPrefs.GetInt("Wave")+1);
 	}
 }

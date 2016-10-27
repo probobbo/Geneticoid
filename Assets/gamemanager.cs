@@ -9,6 +9,7 @@ public class gamemanager : MonoBehaviour {
     public bool first = true;
     public int number;
     public GeneticFeatures[] lastgen;
+    public int wavwNumber = 0; 
 
 	// Use this for initialization
 	void Start () {
@@ -19,11 +20,17 @@ public class gamemanager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
 	}
 
     public void SetFirst(bool b)
     {
         first = b;
+        if (first)
+        {
+            PlayerPrefs.SetInt("Wave", 0);
+            wavwNumber = PlayerPrefs.GetInt("Wave");
+        }
     }
 
     public void LoadScene(int i)
@@ -33,7 +40,7 @@ public class gamemanager : MonoBehaviour {
 
     public GeneticFeatures[] LoadLastGen()
     {
-        
+        wavwNumber = PlayerPrefs.GetInt("Wave");
         return new FileReader().ReadJSon();
     }
 
@@ -45,6 +52,13 @@ public class gamemanager : MonoBehaviour {
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void WonGen()
+    {
+        SceneManager.LoadScene(1);
+        wavwNumber = PlayerPrefs.GetInt("Wave") + 1;
+        PlayerPrefs.SetInt("Wave", wavwNumber);
     }
 
 
