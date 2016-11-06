@@ -21,13 +21,14 @@ public class CameraMovement : MonoBehaviour
     {
         if (player != null)
         {
-            Vector3 pos = player.transform.position;
-            transform.position = new Vector3(pos.x, pos.y, transform.position.z);
+            
+            //transform.position = new Vector3(pos.x, pos.y, transform.position.z);
         }
     }
 
     void FixedUpdate()
     {
-       
+        Vector3 pos = player.transform.position;
+        transform.position = new Vector3(pos.x, pos.y, transform.position.z);
     }
 }
