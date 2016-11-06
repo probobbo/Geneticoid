@@ -26,6 +26,7 @@ public class EnemyBaseShoot : MonoBehaviour {
                 {
                     Shoot();
                 }
+                timer = 0; 
             }
         }
 	}

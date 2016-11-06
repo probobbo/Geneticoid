@@ -25,6 +25,7 @@ public class EnemyRandomMovement : InterfaceEnemyMovement {
         }
 
         Vector3 velocity = new Vector3(0, Time.deltaTime * speed);
+        
         transform.position += transform.rotation * velocity;
         ArrayList result = new ArrayList();
     }

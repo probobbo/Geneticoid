@@ -25,13 +25,18 @@ public class SpaceShipMovement : MonoBehaviour {
             Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
             mousePos.x = mousePos.x - objectPos.x;
             mousePos.y = mousePos.y - objectPos.y;
-
             float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
-
-            transform.position += new Vector3(Input.GetAxis("Horizontal") * speed * Time.deltaTime, Input.GetAxis("Vertical") * speed * Time.deltaTime, 0);
+            //transform.position += new Vector3(Input.GetAxis("Horizontal") * speed * Time.deltaTime, Input.GetAxis("Vertical") * speed * Time.deltaTime, 0);
+            
         }
 	}
+
+    void FixedUpdate()
+    {
+        GetComponent<Rigidbody2D>().velocity = new Vector3(Input.GetAxis("Horizontal") * speed,
+            Input.GetAxis("Vertical") * speed, 0);
+    }
 
     public void Pause()
     {
